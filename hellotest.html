@@ -12,6 +12,13 @@
         <h2 :title ="title" >
             <!-- 插值文本 -->
             {{title}}
+            <!-- 用户输入 -->
+            <p>
+                <input v-model="course" type="text" v-on:keydown.enter= "addCourse"/>
+                <button @click= "addCourse">ADD</button>
+            
+            </p>
+            <!-- 列表渲染 -->
             <div v-for="c in courses" :key="c">
                 {{ c }}
             </div>
@@ -22,14 +29,24 @@
     <script src = "vue.js"></script>
     <script>
         //1. 创建vue实例
+        var data ={ a: 1};
         const app = new Vue({
             el: '#app',
             data() {
                 return {
                     title: 'Cart',
-                    courses:['web1','web2']
+                    courses:['web1','web2'],
+                    course: ''
                 }
             },
+            methods: {
+                addCourse(){
+                    this.courses.push(this.course);
+                    this.chourse = ''
+                }
+
+
+            }
         })
 
 
